@@ -24,11 +24,10 @@ namespace api.Controllers
             _stockRepo = stockRepository;
             _context = context;
         }
-
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
-            var stocks = await _stockRepo.GetAllAsync();
+            var stocks = await _stockRepo.GetAllAsync(query);
             var stocksDto = stocks.Select(s => s.ToStockDto());
             return Ok(stocksDto);
         }

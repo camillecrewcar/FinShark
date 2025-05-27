@@ -44,6 +44,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockRequestDto)
         {
             var stockModel = stockRequestDto.ToStockFromCreateDTO();

@@ -20,9 +20,13 @@ namespace api.Controllers
     {
         private readonly IStockRepository _stockRepo;
         private readonly ICommentRepository _commentRepo;
+        private readonly UserManager<AppUser> _userManager;
         
-        public CommentController(ICommentRepository commentRepository, IStockRepository stockRepository)
+        public CommentController(ICommentRepository commentRepository,
+        IStockRepository stockRepository,
+        UserManager<AppUser> userManager)
         {
+            _userManager = userManager;
             _stockRepo = stockRepository;
             _commentRepo = commentRepository;
         }
@@ -49,7 +53,11 @@ namespace api.Controllers
         {
             if (await _stockRepo.StockExists(stockId))
             {
+                var username = User.GetUsername();
+                var appUser = await _userManager.FindByNameAsync(username);
+
                 var commentModel = commentDto.ToCommentFromCreate(stockId);
+                commentModel.AppUserId = appUser.Id;
                 await _commentRepo.CreateAsync(commentModel);
                 return CreatedAtAction(nameof(GetById), new { id = commentModel.Id }, commentModel.ToCommentDto());
             }

@@ -16,5 +16,7 @@ namespace api.Models
         public Stock? Stock { get; set; }
         public String Content { get; set; } = string.Empty;
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        public string AppUserId { get; set; } = string.Empty;
+        public AppUser AppUser { get; set; }
     }
 }

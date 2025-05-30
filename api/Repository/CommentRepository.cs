@@ -38,10 +38,27 @@ namespace api.Repository
             return comment;
         }
 
-        public async Task<List<Comment>> GetAllAsync()
+        public async Task<List<Comment>> GetAllAsync(CommentQueryObject query)
         {
-            return await _context.Comments.Include(a => a.AppUser).ToListAsync();
+            // Apply filtering based on the query object
+            var comments = _context.Comments.Include(a => a.AppUser).AsQueryable();
+
+            if (!string.IsNullOrEmpty(query.Symbol))
+            {
+                comments = comments.Where(s => s.Stock.Symbol.ToLower() == query.Symbol.ToLower());
+            }
+            if (query.IsDecsending)
+            {
+                comments = comments.OrderByDescending(c => c.CreatedOn);
+            }
+            else
+            {
+                comments = comments.OrderBy(c => c.CreatedOn);
+            }
+
+            return await comments.ToListAsync();
         }
+                
 
         public async Task<Comment?> GetByIdAsync(int id)
         {

@@ -35,9 +35,9 @@ namespace api.Controllers
             _fmpService = fmpService;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(CommentQueryObject query)
         {
-            var comments = await _commentRepo.GetAllAsync();
+            var comments = await _commentRepo.GetAllAsync(query);
             var commentsDto = comments.Select(s => s.ToCommentDto());
             return Ok(commentsDto);
         }

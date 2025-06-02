@@ -1,27 +1,27 @@
 import React, { JSX } from 'react'
 import Card from '../Card/Card'
+import { CompanySearch } from '../../company';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
-  List : {
-    companyName: string;
-    ticker: string;
-    price: string;
-    description: string;
-  }[];
+  List : CompanySearch[];
 }
 
 const CardList : React.FC<Props> = ({List}: Props): JSX.Element => {
   return (
     <div>
-      {List.map((item, index) => (
+      {List.length > 0 ? (
+      List.map((item) => (
         <Card
-          key={index}
-          companyName={item.companyName}
-          ticker={item.ticker}
-          price={item.price}
-          description={item.description}
+          id={item.name}
+          key={uuidv4()}
+          search={item}
         />
-      ))}
+      ))) : (
+        <div className="no-results">
+          <p>No results found. Please try a different search.</p>
+        </div>
+      )}
       
     </div>
   )

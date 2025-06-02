@@ -26,17 +26,11 @@ function App() {
       }
       console.log(searchResults);
   }
-  const stockList = searchResults.map((item) => ({
-    companyName: item.name,
-    ticker: item.exchangeShortName,
-    price: item.symbol,
-    description: item.name
-  }));
   return (
     <div className="App">
       <Search handleChange ={handleChange} search = {search} mouseClick = {mouseClick}/>
       {serverError && <div className="error">{serverError}</div>}
-      <CardList List={stockList} />
+      <CardList List={searchResults} />
     </div>
   );
 }

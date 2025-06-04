@@ -5,14 +5,16 @@ import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   List : CompanySearch[];
+  onPortfolioCreate: (e: React.SyntheticEvent) => void;
 }
 
-const CardList : React.FC<Props> = ({List}: Props): JSX.Element => {
+const CardList : React.FC<Props> = ({List, onPortfolioCreate}: Props): JSX.Element => {
   return (
     <div>
       {List.length > 0 ? (
       List.map((item) => (
         <Card
+          onPortfolioCreate={onPortfolioCreate}
           id={item.name}
           key={uuidv4()}
           search={item}

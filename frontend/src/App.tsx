@@ -1,23 +1,35 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import './App.css';
-import Card from './Components/Card/Card';
 import CardList from './Components/CardList/CardList';
 import Search from './Components/Search/Search';
 import { CompanySearch } from './company';
 import { searchCompanies } from './api';
+import ListPortfolio from './Components/Portfolio/ListPortfolio/ListPortfolio';
 
 
 function App() {
   const [search, setSearch] = useState<string>('');
+  const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
   const [searchResults, setSearchResults] = useState<CompanySearch[]>([]);
   const [serverError, setServerError] = useState<string | null>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value);
       console.log(e.target.value);
   }
-  const mouseClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(search);
+  const onPortfolioCreate = (e: any) => {
+      e.preventDefault();
+      if(portfolioValues.includes(e.target[0].value)) {
+          setServerError("Portfolio already exists");
+          return;
+      }
+      const updatedPortfolio = [...portfolioValues, e.target[0].value];
+      setPortfolioValues(updatedPortfolio);
+      console.log("Portfolio created" + e );
+  }
+  const onSearchSubmit = async (e: SyntheticEvent) => {
+      e.preventDefault();
+      console.log(search);
       const result = await searchCompanies(search);
       if (typeof result === 'string') {
           setServerError(result);
@@ -28,9 +40,10 @@ function App() {
   }
   return (
     <div className="App">
-      <Search handleChange ={handleChange} search = {search} mouseClick = {mouseClick}/>
+      <ListPortfolio portfolioValues={portfolioValues} />
+      <Search handleSearchChange ={handleSearchChange} search = {search} onSearchSubmit = {onSearchSubmit}/>
       {serverError && <div className="error">{serverError}</div>}
-      <CardList List={searchResults} />
+      <CardList List={searchResults} onPortfolioCreate={onPortfolioCreate} />
     </div>
   );
 }

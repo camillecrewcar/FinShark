@@ -1,13 +1,15 @@
 import React, { JSX } from 'react'
 import './Card.css'
 import { CompanySearch } from '../../company'
+import AddPortfolio from '../Portfolio/AddPortfolio/AddPortfolio';
 
 interface Props {
     id: string;
     search: CompanySearch;
+    onPortfolioCreate: (e: React.SyntheticEvent) => void;
 }
 
-const Card: React.FC<Props> = ({search, id}: Props): JSX.Element => {
+const Card: React.FC<Props> = ({search, id, onPortfolioCreate}: Props): JSX.Element => {
   return (
     <div className='card' id ={id}>
         <img
@@ -23,7 +25,7 @@ const Card: React.FC<Props> = ({search, id}: Props): JSX.Element => {
         <p className='info'>
             {search.name ? search.name : 'No description available.'}
         </p>
-
+        <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={search.symbol}></AddPortfolio>
     </div>
   )
 }

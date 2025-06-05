@@ -1,0 +1,37 @@
+.card-portfolio {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+  padding: 1.5rem 1.25rem;
+  width: 300px;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: box-shadow 0.2s;
+}
+
+.card-portfolio:hover {
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.16);
+}
+
+.portfolio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.card-portfolio h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin: 0;
+}
+
+.portfolio-value {
+  color: #475569;
+  font-size: 1rem;
+  margin: 0;
+  padding-top: 0.25rem;
+}

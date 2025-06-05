@@ -5,6 +5,8 @@ import Search from './Components/Search/Search';
 import { CompanySearch } from './company';
 import { searchCompanies } from './api';
 import ListPortfolio from './Components/Portfolio/ListPortfolio/ListPortfolio';
+import Navbar from './Components/Navbar/Navbar';
+import Hero from './Components/hero/hero';
 
 
 function App() {
@@ -45,10 +47,12 @@ function App() {
       console.log(searchResults);
   }
   return (
-    <div className="App">
+    <div className="App min-h-screen bg-gray-100 flex flex-col items-center">
+      <Navbar />
+      <Hero></Hero>
       <ListPortfolio deletePortfolio={deletePortfolio} portfolioValues={portfolioValues}  />
       <Search handleSearchChange ={handleSearchChange} search = {search} onSearchSubmit = {onSearchSubmit}/>
-      {serverError && <div className="error">{serverError}</div>}
+      {serverError && <div className="error text-red-600 bg-red-100 border border-red-300 px-4 py-2 rounded mb-4">{serverError}</div>}
       <CardList List={searchResults} onPortfolioCreate={onPortfolioCreate} />
     </div>
   );

@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tailwindcss/cli": "^4.1.8",
+    "@tailwindcss/vite": "^4.1.8",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.126",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
     "axios": "^1.9.0",
@@ -45,7 +46,13 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.8",
     "@types/axios": "^0.14.4",
-    "@types/uuid": "^10.0.0"
+    "@types/node": "^22.15.29",
+    "@types/uuid": "^10.0.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.4",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^3.4.17"
   }
 }

@@ -1,7 +1,6 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { searchCompanies } from '../../api';
 import { CompanySearch } from '../../company';
-import Navbar from '../../Components/Navbar/Navbar';
 import Hero from '../../Components/Hero/hero';
 import ListPortfolio from '../../Components/Portfolio/ListPortfolio/ListPortfolio';
 import Search from '../../Components/Search/Search';
@@ -10,7 +9,7 @@ import CardList from '../../Components/CardList/CardList';
 interface Props {}
 
 const SearchPage = (props: Props) => {
-    const [search, setSearch] = useState<string>('');
+      const [search, setSearch] = useState<string>('');
       const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
       const [searchResults, setSearchResults] = useState<CompanySearch[]>([]);
       const [serverError, setServerError] = useState<string | null>("");

@@ -1,6 +1,7 @@
 import React, { JSX } from 'react'
 import { CompanySearch } from '../../company'
 import AddPortfolio from '../Portfolio/AddPortfolio/AddPortfolio';
+import { Link } from 'react-router';
 
 interface Props {
     id: string;
@@ -10,7 +11,9 @@ interface Props {
 
 const Card: React.FC<Props> = ({search, id, onPortfolioCreate}: Props): JSX.Element => {
   return (
+    
     <div className="w-80 rounded-xl shadow-lg bg-white overflow-hidden m-4 flex flex-col">
+        <Link to={`/company/${search.symbol}`} className="hover:opacity-80 transition">
         <img
           className="w-full h-44 object-cover"
           src={`https://picsum.photos/300/180?random=${Math.floor(Math.random() * 1000)}`}
@@ -24,6 +27,7 @@ const Card: React.FC<Props> = ({search, id, onPortfolioCreate}: Props): JSX.Elem
         <p className="px-4 pb-4 pt-2 text-gray-700 text-sm leading-relaxed">
             {search.name ? search.name : 'No description available.'}
         </p>
+        </Link>
         <AddPortfolio onPortfolioCreate={onPortfolioCreate} symbol={search.symbol}></AddPortfolio>
     </div>
   )

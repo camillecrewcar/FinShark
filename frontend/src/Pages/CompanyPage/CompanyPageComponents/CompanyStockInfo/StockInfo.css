@@ -1,0 +1,25 @@
+.stock-info {
+  margin-bottom: 2rem;
+  background: #f9f9f9;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.06);
+}
+
+.stock-info h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #2563eb;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.stock-info p {
+  margin: 0.25rem 0;
+  color: #334155;
+  font-size: 1rem;
+}
+
+.stock-info strong {
+  color: #1e293b;
+}

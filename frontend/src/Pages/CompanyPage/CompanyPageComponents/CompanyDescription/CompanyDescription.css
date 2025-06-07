@@ -1,0 +1,21 @@
+.company-description {
+  background: #f8fafc;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.03);
+}
+
+.company-description h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #2563eb;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.company-description p {
+  color: #334155;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}

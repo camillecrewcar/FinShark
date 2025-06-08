@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { Children, useEffect, useState } from 'react';
 import { CompanyProfile } from '../../company';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { getCompanyProfile } from '../../api';
 import Header from './CompanyPageComponents/CompanyHeader/Header';
 import StockInfo from './CompanyPageComponents/CompanyStockInfo/StockInfo';
 import CompanyInfo from './CompanyPageComponents/CompanyInfo/CompanyInfo';
 import CompanyDescription from './CompanyPageComponents/CompanyDescription/CompanyDescription';
+import Sidebar from './CompanyPageComponents/Sidebar/Sidebar';
 
-const CompanyPage = () => {
+type Props = {
+  children?: React.ReactNode;
+}
+
+
+const CompanyPage = ({children} : Props) => {
   const { ticker } = useParams();
   const [company, setCompany] = useState<CompanyProfile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -44,10 +50,13 @@ const CompanyPage = () => {
         exchange={company.exchange}
         exchangeShortName={company.exchangeShortName}
       />
-      {/* Stock Info */}
-      <StockInfo company={company} />
-      {/* Company Info */}
-      <CompanyInfo company={company} />
+      <div style={{ display: 'flex', gap: '2rem' }}>
+        <Sidebar />
+        <div style={{ flex: 1 }}>
+          <div className="flex flex-wrap">{children}</div>
+          <div className="flex flex-wrap">{<Outlet />}</div>
+        </div>
+      </div>
       {/* Description */}
       <CompanyDescription description={company.description} />
     </div>

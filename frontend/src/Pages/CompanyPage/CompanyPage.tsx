@@ -3,8 +3,7 @@ import { CompanyProfile } from '../../company';
 import { Outlet, useParams } from 'react-router-dom';
 import { getCompanyProfile } from '../../api';
 import Header from './CompanyPageComponents/CompanyHeader/Header';
-import StockInfo from './CompanyPageComponents/CompanyStockInfo/StockInfo';
-import CompanyInfo from './CompanyPageComponents/CompanyInfo/CompanyInfo';
+
 import CompanyDescription from './CompanyPageComponents/CompanyDescription/CompanyDescription';
 import Sidebar from './CompanyPageComponents/Sidebar/Sidebar';
 
@@ -54,7 +53,7 @@ const CompanyPage = ({ children }: { children?: React.ReactNode }) => {
           <Sidebar />
           <div className="flex-1 flex flex-col gap-8">
             <div className="w-full">
-              <Outlet />
+              <Outlet context={ticker}/>
               {children}
             </div>
             <CompanyDescription description={company.description} />

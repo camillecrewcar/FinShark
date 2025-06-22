@@ -3,7 +3,7 @@ import { CompanyProfile } from '../../../../company';
 import './CompanyInfo.css';
 
 interface CompanyInfoProps {
-//   company: CompanyProfile;
+  // company: CompanyProfile;
 }
 
 const CompanyInfo = () => (

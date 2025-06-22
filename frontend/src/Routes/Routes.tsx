@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
             {path: "/company/:ticker", element: <CompanyPage />,
             children: [
                 {path: "company-info", element: <CompanyInfo />},
-                {path: "stock-info", element: <StockInfo />}
+                {path: "stock-info", element: <StockInfo company={{} as any} />}
             ],
             },
 
